@@ -1,0 +1,28 @@
+name: API CI
+
+on:
+  push:
+    branches: [develop, feature/**, hotfix/**, release/**]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  backend:
+    name: Spring Boot CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build and run tests
+        run: ./gradlew clean build
