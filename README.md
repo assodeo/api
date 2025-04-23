@@ -11,7 +11,14 @@ and other resources.
 
 Assuming you are using IntelliJ IDEA, you can run the project by following these steps:
 1. Clone the repository (File → New → Project from Version Control)
-2. Run the server (Run → Run... → 'AssodeoApplication')
+2. Generate a public/private key pair for JWT authentication:
+   - Navigate to the root folder
+   - Open a terminal and run the following command:
+     ```bash
+     openssl genrsa -out src/main/resources/keys/private-key.pem 2048
+     openssl rsa -in src/main/resources/keys/private-key.pem -pubout -out src/main/resources/keys/public-key.pub
+     ```
+3. Run the server (Run → Run... → 'AssodeoApplication')
 
 The API will be available at `http://localhost:8080` by default.
 
@@ -26,9 +33,16 @@ The project is structured as follows:
 |   |   |   |-- com.assodeo.api
 |   |   |   |   |-- config # Configuration classes
 |   |   |   |   |-- controller # REST controllers
+|   |   |   |   |-- dto # Data Transfer Objects
+|   |   |   |   |-- entity # JPA entities
+|   |   |   |   |-- exception # Custom exceptions
+|   |   |   |   |-- repository # JPA repositories
+|   |   |   |   |-- security # Security services
+|   |   |   |   |-- service # Service classes
 |   |   |   |   |-- AssodeoApplication.java
 |   |   |   |-- resources
 |   |   |       |-- db.changelog # Database changelogs
+|   |   |       |-- keys # JWT keys
 |   |   |       |-- application.properties
 |   |   |       |-- application-dev.properties
 |   |   |       |-- application-prod.properties
