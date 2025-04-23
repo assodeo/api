@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class AssociationNotFoundException extends RuntimeException {
 
     public AssociationNotFoundException(Long id) {
-        super("Association not found: %d".formatted(id));
+        super("Association not found for id %d".formatted(id));
     }
 }
